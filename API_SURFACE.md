@@ -7,13 +7,13 @@ This inventory is a review map and must be regenerated/compared at baseline.
 
 | Method | Path | Authority / exposure |
 | --- | --- | --- |
-| `GET` | `/privacy` | Public legal page; not in OpenAPI |
-| `GET` | `/terms` | Public legal page; not in OpenAPI |
+| `GET` | `/privacy` | Public legal page; canonical version and SHA-256 headers; not in OpenAPI |
+| `GET` | `/terms` | Public legal page; canonical version and SHA-256 headers; not in OpenAPI |
 | `GET` | `/health/live` | Process liveness; edge exposure depends on nginx policy |
 | `GET` | `/health/ready` | Database-aware readiness; edge exposure depends on nginx policy |
 | `POST` | `/api/v1/auth/apple` | Public with Apple identity token, nonce, and installation device ID |
 | `POST` | `/api/v1/auth/refresh` | Public with rotating refresh token |
-| `POST` | `/api/v1/auth/link` | Legacy development/compatibility path; `404` unless time-bounded flag is active |
+| `POST` | `/api/v1/auth/link` | Legacy non-production migration-test path; `404` when disabled and forbidden by production startup |
 
 ## Active device-session routes
 
@@ -32,7 +32,7 @@ attached Apple identity.
 | `PUT` | `/api/v1/users/me/photo` | Replace photo |
 | `DELETE` | `/api/v1/users/me/photo` | Remove photo |
 | `GET` | `/api/v1/profiles/{telescan_id}` | Resolve accessible shared profile |
-| `POST` | `/api/v1/reports` | Submit idempotent universal report |
+| `POST` | `/api/v1/reports` | Submit idempotent universal report with optional 0–500 comment |
 | `GET` | `/api/v1/users/me/blocks` | List blocks |
 | `PUT` | `/api/v1/users/me/blocks/{target_telescan_id}` | Block profile |
 | `DELETE` | `/api/v1/users/me/blocks/{target_telescan_id}` | Unblock profile |
@@ -57,7 +57,7 @@ denied at public edges.
 | --- | --- | --- |
 | `GET` | `/internal/v1/moderation/reports` | List queue, optional status and bounded limit |
 | `GET` | `/internal/v1/moderation/reports/{report_id}` | Read one report |
-| `PATCH` | `/internal/v1/moderation/reports/{report_id}` | Change lifecycle status/note/actor |
+| `PATCH` | `/internal/v1/moderation/reports/{report_id}` | Revision-CAS status/note mutation; closed states terminal |
 
 ## OpenAPI and static routes
 
@@ -69,8 +69,8 @@ The API also mounts application-owned static legal assets under `/public`.
 
 | Scope | Limit |
 | --- | --- |
-| Legacy link by IP | 30 per 5 minutes |
-| Legacy link by device | 10 per 5 minutes |
+| Legacy link by IP | 30 per 5 minutes in non-production migration testing only |
+| Legacy link by device | 10 per 5 minutes in non-production migration testing only |
 | Apple sign-in by IP | 30 per 5 minutes |
 | Apple sign-in by device | 10 per 5 minutes |
 | Refresh by IP | 60 per minute |
@@ -97,4 +97,3 @@ and resource-exhaustion paths.
 - Test path encoding, duplicate slashes, case, query ambiguity, alternate
   methods, and forwarded headers through both public edges.
 - Confirm legacy routes remain disabled in the audited production state.
-

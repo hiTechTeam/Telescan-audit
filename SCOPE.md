@@ -34,6 +34,10 @@ The audit should determine whether Telescan:
 - `Telescan-info`
 - `Telescan-internal-docs`
 
+`Telescan-audit` is the eleventh repository in the project inventory. Its
+package-integrity and evidence-separation controls are in scope for handoff,
+while it contains no application runtime.
+
 Exact commit SHAs must be frozen in [REPOSITORIES.md](REPOSITORIES.md) before
 testing begins.
 
@@ -101,4 +105,3 @@ testing begins.
 - Retest report mapping each accepted fix to a new commit SHA.
 - Separate disclosure of documentation/privacy mismatches even when the code is
   not directly exploitable.
-

@@ -1,5 +1,27 @@
 # Audit Handoff Checklist
 
+The checked items below describe the historical baseline only. The P0 candidate
+is a separate, unfrozen delta and cannot inherit those checks.
+
+## P0 candidate freeze and acceptance
+
+- [ ] Commit and review the coordinated changes in every affected repository.
+- [ ] Record new SHAs, immutable image digests, app build, and package manifest.
+- [ ] Rerun configured CI at the frozen SHAs and attach retained logs/artifacts.
+- [ ] Run production dry-run migrations/invariants and prove legacy auth/code
+      material is absent before enabling the release.
+- [ ] Restore a current-schema encrypted production snapshot in isolation and
+      record backup age, elapsed restore time, indexes, references, and app-role
+      boundaries.
+- [ ] Record signed TestFlight Apple authentication and two-device physical BLE,
+      background, blocking, notification, and account-switch behavior.
+- [ ] Exercise deployment rollback against the frozen candidate.
+- [ ] Complete restricted-ingest, freshness, and guarded Grafana-key migrations.
+- [ ] Observe and record both firing and resolved Telegram drill messages.
+- [ ] Capture sanitized, passing read-only attestations from Moscow, EU, and
+      monitoring roles plus both-origin legal version/digest checks.
+- [ ] Obtain release/security-owner sign-off or explicit residual-risk decisions.
+
 ## Scope and contracting
 
 - [ ] Auditor, owner, dates, methodology, deliverables, confidentiality, and

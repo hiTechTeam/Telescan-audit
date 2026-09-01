@@ -19,8 +19,8 @@ not uploaded to the API.
 | User bot | Reads the user's public Telegram profile and requests normal one-time link codes through a service credential |
 | Admin bot | Allow-listed moderation interface using a separate service credential |
 | API | Sole application-data authority; authentication, authorization, profiles, photos, reports, blocks, rate limits |
-| MongoDB | Users, Apple identities, link/review codes, sessions, confirmations, reports, blocks, shared rate-limit counters |
-| Photo storage | API-owned profile-photo objects |
+| MongoDB | Users, Apple identities, link/review codes, sessions, confirmations, reports/events, blocks, durable account-operation journals, shared rate-limit counters |
+| Photo storage | API-owned live profile-photo and separate moderation-evidence objects |
 | EU relay | Public `api.tgtelescan.ru` TLS endpoint and trusted forwarding boundary |
 | Moscow nginx | Main-domain/legal edge, route policy, and WireGuard-only API origin |
 | Monitoring | Cross-host metrics/logs and restricted Telegram alerts |
@@ -68,16 +68,23 @@ flowchart LR
 | User actions | Profile lookup, reports, blocks, photo/profile changes | Access JWT plus active device session |
 | User-bot internal | Link-code and confirmation routes | `BOT_SERVICE_SECRET` |
 | Moderation internal | Report queue and decision routes | `MODERATION_SERVICE_SECRET` |
-| Legacy compatibility | Hidden `/v1` routes | Disabled by default; time-bounded flag only |
+| Legacy compatibility | Hidden `/v1` routes | Non-production migration testing only; production startup rejects enablement |
 
 ## Security invariants
 
 - A Telegram or Review code cannot create a primary session by itself.
+- A normal Telegram target has at most one active link code, and consumed proof
+  can resume only its exact durable merge operation.
 - Every protected request checks both the JWT and live device session.
 - A blocked relationship is enforced in both lookup directions by the API.
 - MongoDB and photo credentials are never distributed to clients or bots.
 - Internal, Swagger, and OpenAPI paths are not public at either edge.
 - Saved and Met data remain device-local and are cleared with the local account
   session.
+- A raw BLE identifier is not user-visible; late account-scoped work is rejected
+  after the session generation advances. Core Bluetooth source epochs are
+  queue-ordered, and per-peripheral GATT work drains before the next account may
+  reuse that peripheral.
+- Moderation mutations use revision CAS and immutable events; closed report
+  evidence shares the 180-day retention boundary.
 - Public privacy commitments must match the shipped iOS and API behavior.
-

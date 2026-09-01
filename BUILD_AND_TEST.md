@@ -111,6 +111,11 @@ Also verify:
 
 ## Current local baseline evidence
 
+The table below belongs to the historical frozen baseline. It does not describe
+the P0 working-tree candidate. Candidate commands and results are tracked
+separately in
+[evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md).
+
 The following checks were completed locally against the content committed in
 the frozen code repositories. The API, bot, and iOS checks were then repeated
 by remote CI at the published final SHAs; exact runs are linked from
@@ -144,10 +149,20 @@ the auditor requires bundle-level test evidence.
 - Concurrent normal-code and Review-code consumption.
 - Refresh rotation and reuse from two devices.
 - Apple/Telegram identity conflict and adoption interruption.
+- Exact consumed-proof binding, repeated completed merge, and one-active-code
+  concurrency.
 - Bidirectional blocked-profile lookup.
 - Duplicate report requests with the same idempotency UUID.
+- Report evidence copy/retry/cleanup, moderation transition/CAS races, and
+  missing/null/string note semantics.
 - Photo upload failure before and after database commit.
 - Account-deletion retry after each resource boundary.
 - Public-path normalization and internal-route denial at EU and Moscow edges.
 - BLE malformed identity, replay, background restoration, and cross-account
   local-state cleanup.
+- Raw/unresolved BLE notification suppression and late A-to-B callback/refresh
+  rejection.
+- Current-schema encrypted restore with journal/evidence indexes, domain
+  references, and application-role negative boundaries.
+- Cross-repository host-lock contention, failed-health rollback, restricted
+  monitoring ingestion, stale/missing telemetry, and firing/resolved delivery.

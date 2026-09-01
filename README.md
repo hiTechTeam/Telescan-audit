@@ -5,6 +5,13 @@
 **Status:** Remote baseline published; CI and production deployment evidence
 captured; auditor access, device evidence, and owner sign-off remain
 
+> **P0 candidate overlay:** the frozen baseline below remains historical and is
+> not rewritten. Coordinated source commits now exist, with only limited remote
+> publication and no successful P0 production rollout. See
+> [P0_REMEDIATION.md](P0_REMEDIATION.md) and
+> [evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md). This is
+> neither a new frozen baseline nor proof of production deployment.
+
 ## Purpose
 
 This package gives an authorized security auditor a self-contained starting
@@ -47,6 +54,7 @@ Use `scripts/hash_package.py` after every package update.
 | [APP_REVIEW.md](APP_REVIEW.md) | Safe Apple App Review code workflow |
 | [AUDITOR_ACCESS.md](AUDITOR_ACCESS.md) | Least-privilege access and staging-data requirements |
 | [OPEN_RISKS.md](OPEN_RISKS.md) | Accepted or unresolved risks disclosed before testing |
+| [P0_REMEDIATION.md](P0_REMEDIATION.md) | Candidate P0 changes, source ownership, evidence, and remaining gates |
 | [HANDOFF_CHECKLIST.md](HANDOFF_CHECKLIST.md) | Final operator checklist before granting access |
 | [templates/FINDING.md](templates/FINDING.md) | Standard finding format |
 | [templates/RETEST.md](templates/RETEST.md) | Remediation/retest record |
@@ -54,6 +62,7 @@ Use `scripts/hash_package.py` after every package update.
 | [evidence/CI_RUNS.md](evidence/CI_RUNS.md) | Remote CI/CD results for the frozen SHAs |
 | [evidence/DEPLOYMENT_STATUS.md](evidence/DEPLOYMENT_STATUS.md) | Production rollout and health evidence |
 | [evidence/EXTERNAL_SURFACE.md](evidence/EXTERNAL_SURFACE.md) | Dated public endpoint smoke observations |
+| [evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md) | Sanitized verification and partial publication status for the unfrozen P0 candidate |
 | [PACKAGE_HASHES.sha256](PACKAGE_HASHES.sha256) | Integrity manifest for the current package contents |
 
 ## Auditor starting sequence

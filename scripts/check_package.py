@@ -25,6 +25,7 @@ REQUIRED_FILES = {
     "APP_REVIEW.md",
     "AUDITOR_ACCESS.md",
     "OPEN_RISKS.md",
+    "P0_REMEDIATION.md",
     "HANDOFF_CHECKLIST.md",
     "templates/FINDING.md",
     "templates/RETEST.md",
@@ -34,6 +35,7 @@ REQUIRED_FILES = {
     "evidence/DEPLOYMENT_STATUS.md",
     "evidence/EXTERNAL_SURFACE.md",
     "evidence/TEST_RESULTS.md",
+    "evidence/P0_LOCAL_VERIFICATION.md",
     "scripts/hash_package.py",
 }
 LINK_PATTERN = re.compile(r"(?<!!)\[[^]]+\]\(([^)]+)\)")
