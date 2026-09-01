@@ -10,23 +10,27 @@
 
 ## Baseline freeze
 
-- [ ] Every in-scope change is reviewed and committed.
-- [ ] Every repository working tree is clean.
+- [x] Every in-scope change is committed in the frozen baseline.
+- [x] Every repository working tree is clean and synchronized with `origin/main`.
 - [ ] `REPOSITORIES.md` contains final commit SHAs and tags.
 - [ ] App version/build and deployed API/container release are mapped to source.
-- [ ] `scripts/collect_snapshot.sh` output is stored and SHA-256 recorded.
+- [x] `scripts/collect_snapshot.sh` output is stored and SHA-256 recorded.
 - [ ] `scripts/hash_package.py` output is stored outside the hashed file set and
       its manifest digest is recorded.
 - [ ] No force-push or baseline rewrite is permitted during the audit.
 
 ## Verification evidence
 
-- [ ] CI is green at every frozen SHA.
-- [ ] API, user-bot, and admin-bot tests/lint/type checks are rerun.
-- [ ] iOS Release build, `build-for-testing`, and a completed XCTest run are
-      captured.
+- [x] Configured CI/CD is green at every frozen SHA; documentation repositories
+      without workflows were verified by remote SHA.
+- [x] API, user-bot, and admin-bot tests/lint/type checks were rerun remotely.
+- [x] iOS XCTest, Release build, and bundle validation completed in CI; local
+      `build-for-testing` also passed.
+- [ ] Retain an `.xcresult` artifact if the auditor requires bundle-level test
+      evidence beyond CI logs.
 - [ ] iOS 18/26 and two-device physical BLE checks are recorded.
-- [ ] Compose/nginx/WireGuard configuration checks are captured.
+- [x] Source-controlled Compose/nginx/WireGuard validation workflows are linked
+      for the frozen infrastructure SHAs.
 - [ ] Dependency inventories, container digests, and SBOM/provenance evidence are
       captured for the frozen baseline.
 - [ ] Latest backup and isolated restore evidence is available.
@@ -61,9 +65,9 @@
 
 ## Secret and data hygiene
 
-- [ ] Package contains no `.env`, tokens, keys, clear codes, user records,
+- [x] Package contains no `.env`, tokens, keys, clear codes, user records,
       database dumps, or private photos.
-- [ ] `scripts/check_package.py` passes.
+- [x] `scripts/check_package.py` passes.
 - [ ] Logs/screenshots are sanitized and reviewed by a second person.
 - [ ] The auditor's storage, retention, and destruction requirements are agreed.
 

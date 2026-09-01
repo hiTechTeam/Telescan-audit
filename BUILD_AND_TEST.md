@@ -112,8 +112,9 @@ Also verify:
 ## Current local baseline evidence
 
 The following checks were completed locally against the content committed in
-the frozen code repositories. They must still be repeated by remote CI at the
-published final SHAs:
+the frozen code repositories. The API, bot, and iOS checks were then repeated
+by remote CI at the published final SHAs; exact runs are linked from
+`evidence/CI_RUNS.md`:
 
 | Check | Result |
 | --- | --- |
@@ -127,12 +128,16 @@ published final SHAs:
 | API/user-bot Compose rendering | Passed |
 | iOS unsigned Release simulator build | Passed |
 | iOS `build-for-testing` | Passed |
+| iOS remote XCTest on Xcode 26.3 | Passed |
+| iOS remote Release build and bundle validation | Passed |
 | Repository whitespace/error check | `git diff --check` passed |
 
-The local full XCTest launch reached `Testing started` but the Xcode runner
-stalled at `waiting for workers to materialize` and was interrupted after 136
-seconds. This is not recorded as a passing test run. Reproduce on a clean CI or
-simulator host and retain the resulting `.xcresult` as baseline evidence.
+The local full XCTest launch reached `Testing started` but the local Xcode
+runner stalled at `waiting for workers to materialize` and was interrupted
+after 136 seconds. The clean GitHub Actions run for the frozen iOS SHA later
+completed XCTest successfully. The current workflow retains logs but does not
+upload the `.xcresult`; retain that artifact in a future audit-specific run if
+the auditor requires bundle-level test evidence.
 
 ## Minimum dynamic test set
 

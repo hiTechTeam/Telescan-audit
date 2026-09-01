@@ -30,6 +30,9 @@ REQUIRED_FILES = {
     "templates/RETEST.md",
     "evidence/README.md",
     "evidence/BASELINE.md",
+    "evidence/CI_RUNS.md",
+    "evidence/DEPLOYMENT_STATUS.md",
+    "evidence/EXTERNAL_SURFACE.md",
     "evidence/TEST_RESULTS.md",
     "scripts/hash_package.py",
 }

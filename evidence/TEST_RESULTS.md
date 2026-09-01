@@ -1,7 +1,7 @@
 # Local Baseline Verification Results
 
 **Date:** September 1, 2026  
-**Evidence class:** Local pre-handoff verification; remote CI evidence pending
+**Evidence class:** Local verification plus remote CI confirmation
 
 | Component/check | Result |
 | --- | --- |
@@ -27,15 +27,14 @@
 A full local XCTest invocation built the application/test targets and reached
 `Testing started`, but the Xcode runner stalled at `waiting for workers to
 materialize`. The run was interrupted after 136 seconds and is not counted as a
-passing execution. A completed `.xcresult` from clean CI or a healthy simulator
-host remains required before external handoff.
+passing local execution. GitHub Actions run `33492223348` subsequently completed
+XCTest, the Release build, and final bundle validation successfully on Xcode
+26.3. The workflow does not upload the `.xcresult`, so retain a result bundle in
+an audit-specific rerun if required by the auditor.
 
 ## Evidence still required
 
-- Remote CI URLs for every frozen SHA.
-- Completed XCTest result bundle.
+- Completed XCTest result bundle if required beyond the retained CI logs.
 - iOS 18/26 manual/device matrix and two-device BLE evidence.
-- Infrastructure Compose/nginx/WireGuard validation at the frozen SHAs.
 - Deployment rollback, external surface, production attestation, SBOM/image
   digest, and latest backup/restore evidence.
-

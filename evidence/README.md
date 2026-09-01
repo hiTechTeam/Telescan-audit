@@ -10,6 +10,7 @@ dumps, or private photos here.
 | `BASELINE.md` | Output of `scripts/collect_snapshot.sh` after freeze |
 | `CI_RUNS.md` | Repository/SHA, workflow URL, UTC time, result |
 | `TEST_RESULTS.md` | Tool versions and sanitized command results |
+| `DEPLOYMENT_STATUS.md` | Deployment workflow and health-gate results |
 | `IOS_MATRIX.md` | Device, OS, build, gesture/BLE/background results |
 | `CONTAINER_IMAGES.md` | Reviewed image names and immutable digests |
 | `SBOM/` | Per-component CycloneDX or SPDX inventories generated from the frozen source/images |

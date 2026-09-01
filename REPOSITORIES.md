@@ -1,7 +1,8 @@
 # Repository Inventory and Baseline
 
-**Inventory captured:** September 1, 2026 at 09:11:44 UTC  
-**Baseline state:** Frozen locally; remote/CI verification pending
+**Inventory captured:** September 1, 2026 at 09:39:49 UTC
+
+**Baseline state:** Published remotely; configured CI/CD verified
 
 ## Current inventory
 
@@ -15,7 +16,7 @@
 | `Telescan-relay` | `main` | `730c271bfc4f7aaed08f244baaf5a0fc58bf801b` | Clean |
 | `Telescan-db` | `main` | `3194ba786436cdb5a266c40ae84971cd01b60e7e` | Clean |
 | `Telescan-monitoring` | `main` | `07b6c6b00218e420d09201e0c4219f12790586a3` | Clean |
-| `Telescan-info` | `main` | `986ce607d38be2e71c3d28989decb681feb74bd3` | Clean |
+| `Telescan-info` | `main` | `bc92242f5b7bff907dd2453fb78ee42b73522212` | Clean |
 | `Telescan-internal-docs` | `main` | `c05fb982319e9462c4bed7c00f657e4b5cb2042c` | Clean |
 
 ## Canonical remotes
@@ -24,6 +25,11 @@ All implementation repositories currently use the private/public GitHub
 organization path `https://github.com/hiTechTeam/<repository>.git`. Auditors
 must receive read-only access only to the repositories listed in the signed
 scope.
+
+The confidential audit package is published separately at
+`https://github.com/hiTechTeam/Telescan-audit.git`. Its repository is private
+and must not be made public because it contains internal architecture, threat,
+and operational context.
 
 ## Freeze procedure
 
@@ -44,11 +50,11 @@ scope.
 Complete this block immediately before external handoff:
 
 ```text
-Baseline frozen at (UTC): 2026-09-01T09:11:44Z
+Baseline frozen at (UTC): 2026-09-01T09:39:49Z
 Approved by: PENDING RELEASE-OWNER SIGN-OFF
 App version/build: 1.0 (2)
-Production API release: PENDING
+Production API release: 8eebf456ee16a49832cd71116e6ff8d6fe7a954d (run 33492210275)
 All working trees clean: YES AT CAPTURE
-All required CI runs green: PENDING
-Snapshot manifest SHA-256: 87eb5936d3dce8826b0a783016d9c4691f9e601d7f9ce785df942e06d36fe98f
+All configured CI/CD runs green: YES — see evidence/CI_RUNS.md
+Snapshot manifest SHA-256: d6318ec0c8836f4bd7f82462c27df8ac5fc99b176300969e05a5f81cd0414660
 ```

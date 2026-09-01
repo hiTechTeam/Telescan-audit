@@ -1,7 +1,9 @@
 # Telescan Frozen Baseline
 
-**Captured (UTC):** 2026-09-01T09:11:44Z  
-**Workspace:** local operator checkout  
+**Captured (UTC):** 2026-09-01T09:39:49Z
+**Workspace:** local operator checkout
+**Remote verification:** every listed local `main` matched `origin/main` at
+capture
 
 | Repository | Branch | Commit SHA | Tree | Remote |
 | --- | --- | --- | --- | --- |
@@ -13,11 +15,16 @@
 | `Telescan-relay` | `main` | `730c271bfc4f7aaed08f244baaf5a0fc58bf801b` | CLEAN | `https://github.com/hiTechTeam/Telescan-relay.git` |
 | `Telescan-db` | `main` | `3194ba786436cdb5a266c40ae84971cd01b60e7e` | CLEAN | `https://github.com/hiTechTeam/Telescan-db.git` |
 | `Telescan-monitoring` | `main` | `07b6c6b00218e420d09201e0c4219f12790586a3` | CLEAN | `https://github.com/hiTechTeam/Telescan-monitoring.git` |
-| `Telescan-info` | `main` | `986ce607d38be2e71c3d28989decb681feb74bd3` | CLEAN | `https://github.com/hiTechTeam/Telescan-info.git` |
+| `Telescan-info` | `main` | `bc92242f5b7bff907dd2453fb78ee42b73522212` | CLEAN | `https://github.com/hiTechTeam/Telescan-info.git` |
 | `Telescan-internal-docs` | `main` | `c05fb982319e9462c4bed7c00f657e4b5cb2042c` | CLEAN | `https://github.com/hiTechTeam/Telescan-internal-docs.git` |
 
-**Baseline result:** VALID — every listed repository was present and clean.
+**Baseline result:** VALID — every listed repository was present, clean, and
+synchronized with its authorized remote.
 
-This manifest records local source state. Remote availability and green CI for
-the exact SHAs must be added before external handoff.
+Configured CI/CD results for these exact SHAs are recorded in
+[CI_RUNS.md](CI_RUNS.md). `Telescan-info` and `Telescan-internal-docs` do not
+define GitHub Actions workflows; their remote SHAs were verified directly.
 
+The audit package itself is maintained in the private
+`hiTechTeam/Telescan-audit` repository. It is intentionally excluded from this
+implementation baseline to avoid a self-referential manifest.

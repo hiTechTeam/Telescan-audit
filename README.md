@@ -2,7 +2,8 @@
 
 **Classification:** Confidential — authorized auditors and Telescan operators only  
 **Prepared:** September 1, 2026  
-**Status:** Local baseline frozen; remote CI and production evidence pending
+**Status:** Remote baseline published; CI and production deployment evidence
+captured; auditor access, device evidence, and owner sign-off remain
 
 ## Purpose
 
@@ -17,12 +18,15 @@ codes, user data, database snapshots, private keys, or `.env` files.
 
 ## Handoff gate
 
-Every in-scope repository now has a clean local working tree and a frozen commit
+Every in-scope repository has a clean local working tree and a frozen commit
 SHA recorded in [REPOSITORIES.md](REPOSITORIES.md) and
-[evidence/BASELINE.md](evidence/BASELINE.md). The baseline is not externally
-handoff-ready until those exact commits exist on the authorized remotes, their
-CI runs are green, and the production/build evidence in the handoff checklist
-is completed. Use `scripts/hash_package.py` after every package update.
+[evidence/BASELINE.md](evidence/BASELINE.md). Those commits are published on
+their authorized remotes. Configured CI/CD workflows are green, the changed
+API and bot services were deployed to production, and dated evidence is linked
+from [evidence/CI_RUNS.md](evidence/CI_RUNS.md) and
+[evidence/DEPLOYMENT_STATUS.md](evidence/DEPLOYMENT_STATUS.md). Remaining
+handoff gates are explicitly tracked in [HANDOFF_CHECKLIST.md](HANDOFF_CHECKLIST.md).
+Use `scripts/hash_package.py` after every package update.
 
 ## Package map
 
@@ -47,6 +51,9 @@ is completed. Use `scripts/hash_package.py` after every package update.
 | [templates/FINDING.md](templates/FINDING.md) | Standard finding format |
 | [templates/RETEST.md](templates/RETEST.md) | Remediation/retest record |
 | [evidence/README.md](evidence/README.md) | Evidence policy and expected artifacts |
+| [evidence/CI_RUNS.md](evidence/CI_RUNS.md) | Remote CI/CD results for the frozen SHAs |
+| [evidence/DEPLOYMENT_STATUS.md](evidence/DEPLOYMENT_STATUS.md) | Production rollout and health evidence |
+| [evidence/EXTERNAL_SURFACE.md](evidence/EXTERNAL_SURFACE.md) | Dated public endpoint smoke observations |
 | [PACKAGE_HASHES.sha256](PACKAGE_HASHES.sha256) | Integrity manifest for the current package contents |
 
 ## Auditor starting sequence

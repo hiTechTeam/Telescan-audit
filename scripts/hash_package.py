@@ -8,7 +8,7 @@ from pathlib import Path
 
 PACKAGE_ROOT = Path(__file__).resolve().parent.parent
 EXCLUDED_NAMES = {"PACKAGE_HASHES.sha256"}
-EXCLUDED_PARTS = {"__pycache__", ".DS_Store"}
+EXCLUDED_PARTS = {".git", "__pycache__", ".DS_Store"}
 
 
 def included_files() -> list[Path]:
@@ -38,4 +38,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
