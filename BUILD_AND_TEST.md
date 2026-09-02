@@ -109,38 +109,34 @@ Also verify:
 - iOS 18 and iOS 26 behavior for navigation bars, swipe actions, context menus,
   background restoration, badges, and local-state cleanup.
 
-## Current local baseline evidence
+## Current pre-release evidence
 
-The table below belongs to the historical frozen baseline. It does not describe
-the P0 working-tree candidate. Candidate commands and results are tracked
-separately in
-[evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md).
-
-The following checks were completed locally against the content committed in
-the frozen code repositories. The API, bot, and iOS checks were then repeated
-by remote CI at the published final SHAs; exact runs are linked from
-`evidence/CI_RUNS.md`:
+The following checks were completed against the September 2 pre-release
+baseline. Exact remote runs are linked from `evidence/CI_RUNS.md`:
 
 | Check | Result |
 | --- | --- |
-| API pytest | 62 passed |
+| API pytest | 157 passed |
 | API Ruff/Pyright | Passed; zero type errors |
-| User-bot pytest | 14 passed |
+| User-bot pytest | 44 passed |
 | User-bot Ruff/Pyright | Passed |
-| Admin-bot pytest | 9 passed |
+| Admin-bot pytest | 41 passed |
 | Admin-bot Ruff/Pyright | Passed |
 | API/user-bot uv lock checks | Passed |
 | API/user-bot Compose rendering | Passed |
 | iOS unsigned Release simulator build | Passed |
-| iOS `build-for-testing` | Passed |
 | iOS remote XCTest on Xcode 26.3 | Passed |
 | iOS remote Release build and bundle validation | Passed |
+| MongoDB validator/deployment fixtures | 10 Python tests plus Node and shell fixtures passed |
+| nginx/relay immutable transaction fixtures | Passed |
+| Monitoring safety, attestation-negative, and transaction fixtures | Passed |
+| Canonical legal generation and two-origin digest check | Passed |
 | Repository whitespace/error check | `git diff --check` passed |
 
 The local full XCTest launch reached `Testing started` but the local Xcode
 runner stalled at `waiting for workers to materialize` and was interrupted
-after 136 seconds. The clean GitHub Actions run for the frozen iOS SHA later
-completed XCTest successfully. The current workflow retains logs but does not
+after 270 seconds. The clean GitHub Actions run for the same iOS SHA completed
+XCTest successfully. The current workflow retains logs but does not
 upload the `.xcresult`; retain that artifact in a future audit-specific run if
 the auditor requires bundle-level test evidence.
 

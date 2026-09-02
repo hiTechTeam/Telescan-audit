@@ -12,7 +12,7 @@ Policy and the shipped implementation must agree with it before release.
 | Telegram ID, public name, username | `users` | Shared Telegram profile | Active account lifetime; deleted with account |
 | Current profile photo | S3-compatible storage plus URL in `users` | Public profile display | Until replacement/account deletion; obsolete objects cleaned after DB commit |
 | Normal link-code HMAC digest and consuming device proof | `link_codes` | One-time Telegram linking and interrupted-merge recovery | One active normal code; unconsumed validity is normally 10 minutes; consumed proof retained up to 30 days |
-| App Review code HMAC digest and lifecycle metadata | `review_codes` | Controlled Apple review access | Configurable 1–60 days, operational default 30; deleted 90 days after expiry |
+| App Review code HMAC digest and lifecycle metadata | `review_codes` | Controlled Apple review access | Configurable 1–90 days; current review batches use 90 days; deleted 90 days after expiry |
 | Device ID, refresh-token digest, session timestamps | `device_sessions` | Per-installation authentication | Default refresh lifetime 30 days; revoked on logout/deletion; TTL at expiry |
 | Shared rate-limit counters | `rate_limits` | Abuse control | TTL at the end of each window |
 | Confirmation request metadata | `confirmation_requests` | Retained server confirmation contract | Default validity 5 minutes; TTL at expiry |
@@ -59,6 +59,7 @@ and one-time atomic consumption remain necessary controls.
    moderation retention still applies; their separate evidence follows the same
    closed-report deadline.
 4. iOS clears tokens, profile caches, Met, Saved, blocked-ID cache, quick-action
+   settings, pending BLE state, badges, and other account-scoped local data.
 5. A completed operation journal remains for no more than 30 days; an incomplete
    journal remains until reconciliation.
 

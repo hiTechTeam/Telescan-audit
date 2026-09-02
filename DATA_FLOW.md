@@ -44,7 +44,7 @@ and the Review-code store second. Each code is scoped to one existing synthetic
 review profile, consumed atomically once, and records lifecycle metadata. Clear
 codes are displayed only once during batch issuance.
 
-The default operational plan issues batches valid for 30 days and removes their
+The current App Review plan issues batches valid for 90 days and removes their
 metadata 90 days after expiry. See [APP_REVIEW.md](APP_REVIEW.md).
 
 ## 4. BLE discovery and local history
@@ -117,5 +117,5 @@ already-completed deletion response. The installation device ID may remain.
 
 The operation is durable but still crosses standalone MongoDB and object
 storage. Auditors must inject interruption at every step and exercise
-reconciliation; see the candidate disposition for `R-003` in
+reconciliation; see the deployment disposition for `R-003` in
 [OPEN_RISKS.md](OPEN_RISKS.md).

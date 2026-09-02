@@ -1,105 +1,70 @@
-# Audit Handoff Checklist
+# Pre-Release Handoff Checklist
 
-The checked items below describe the historical baseline only. The P0 candidate
-is a separate, unfrozen delta and cannot inherit those checks.
+## Source baseline and verification
 
-## P0 candidate freeze and acceptance
+- [x] Every in-scope repository is committed, clean, on `main`, and synchronized
+      with `origin/main` after fetching remotes.
+- [x] Current source SHAs and App version/build `1.0 (2)` are recorded.
+- [x] Every configured exact-SHA CI/CD workflow is green.
+- [x] API, user-bot, admin-bot, database, edge, monitoring, legal, and audit
+      package checks were rerun or independently confirmed.
+- [x] iOS exact-SHA XCTest, Release build, and bundle validation passed in CI;
+      a second unsigned Release simulator build passed locally.
+- [x] Public API/legal reachability, route denial, DNS, TLS, Moscow/EU service
+      path, backup timer, and central monitoring health were checked read-only.
+- [x] Architecture, data flow, risks, App Review, privacy/retention, deployment,
+      and evidence indexes match the pre-release source baseline.
+- [x] Public Privacy Policy and Terms match the deployed legal version/digest.
+- [x] Package contains no `.env`, credentials, clear Review codes, user records,
+      database dumps, or private photos; package checker and hashes pass.
 
-- [ ] Commit and review the coordinated changes in every affected repository.
-- [ ] Record new SHAs, immutable image digests, app build, and package manifest.
-- [ ] Rerun configured CI at the frozen SHAs and attach retained logs/artifacts.
-- [ ] Run production dry-run migrations/invariants and prove legacy auth/code
-      material is absent before enabling the release.
+## App Store submission
+
+- [x] Two synthetic Telegram review profiles exist with public usernames and no
+      personal profile data.
+- [x] Separate ten-code batches were issued for 90 days and one code from each
+      batch was consumed in the development linking test; nine unused codes per
+      profile remain for private Review Notes.
+- [x] Review profiles have no active Telescan sessions after operator testing.
+- [x] Review notes template, two-device instructions, demonstration video,
+      Privacy Policy, Terms, and support address are prepared.
+- [ ] Publishing company invites the required people to Apple Developer and App
+      Store Connect with least privilege.
+- [ ] Replace the local Personal Team with the publishing company Team ID;
+      register `hiTeam.TelescaniOS` and enable Sign in with Apple.
+- [ ] Confirm build `2` has not already been uploaded, or increment the build.
+- [ ] Create a signed Archive/TestFlight build and verify Apple-first sign-in,
+      Telegram linking, account deletion, and two-device BLE on that exact build.
+- [ ] Complete App Store Connect metadata, screenshots, age rating, privacy
+      answers, export-compliance answers, contact phone/email, and paste only
+      unused codes into private Review Notes.
+- [ ] Monitor the review contact and revoke all remaining review-code batches
+      after review and any appeal.
+
+## Operational acceptance
+
 - [ ] Restore a current-schema encrypted production snapshot in isolation and
-      record backup age, elapsed restore time, indexes, references, and app-role
-      boundaries.
-- [ ] Record signed TestFlight Apple authentication and two-device physical BLE,
-      background, blocking, notification, and account-switch behavior.
-- [ ] Exercise deployment rollback against the frozen candidate.
-- [ ] Complete restricted-ingest, freshness, and guarded Grafana-key migrations.
-- [ ] Observe and record both firing and resolved Telegram drill messages.
-- [ ] Capture sanitized, passing read-only attestations from Moscow, EU, and
-      monitoring roles plus both-origin legal version/digest checks.
-- [ ] Obtain release/security-owner sign-off or explicit residual-risk decisions.
-
-## Scope and contracting
-
-- [ ] Auditor, owner, dates, methodology, deliverables, confidentiality, and
-      retest terms are agreed.
-- [ ] `SCOPE.md` and production rules of engagement are signed.
-- [ ] Emergency and ordinary communication channels are tested.
-- [ ] Third-party/provider testing restrictions are understood.
-
-## Baseline freeze
-
-- [x] Every in-scope change is committed in the frozen baseline.
-- [x] Every repository working tree is clean and synchronized with `origin/main`.
-- [ ] `REPOSITORIES.md` contains final commit SHAs and tags.
-- [ ] App version/build and deployed API/container release are mapped to source.
-- [x] `scripts/collect_snapshot.sh` output is stored and SHA-256 recorded.
-- [ ] `scripts/hash_package.py` output is stored outside the hashed file set and
-      its manifest digest is recorded.
-- [ ] No force-push or baseline rewrite is permitted during the audit.
-
-## Verification evidence
-
-- [x] Configured CI/CD is green at every frozen SHA; documentation repositories
-      without workflows were verified by remote SHA.
-- [x] API, user-bot, and admin-bot tests/lint/type checks were rerun remotely.
-- [x] iOS XCTest, Release build, and bundle validation completed in CI; local
-      `build-for-testing` also passed.
-- [ ] Retain an `.xcresult` artifact if the auditor requires bundle-level test
-      evidence beyond CI logs.
-- [ ] iOS 18/26 and two-device physical BLE checks are recorded.
-- [x] Source-controlled Compose/nginx/WireGuard validation workflows are linked
-      for the frozen infrastructure SHAs.
-- [ ] Dependency inventories, container digests, and SBOM/provenance evidence are
-      captured for the frozen baseline.
-- [ ] Latest backup and isolated restore evidence is available.
-- [ ] Deployment rollback has a dated non-production exercise.
-
-## Documentation consistency
-
-- [ ] Architecture, data flow, threats, risks, privacy, and production topology
-      match the frozen source.
-- [ ] Public Privacy Policy and Terms match the submitted build.
-- [ ] App Store privacy answers match the privacy manifest and policy.
-- [ ] Data-retention values match MongoDB TTL indexes and cleanup code.
-- [ ] Known limitations are approved rather than silently omitted.
-
-## Access and environment
-
-- [ ] Read-only repository/CI access is provisioned.
-- [ ] Staging contains synthetic data and production-equivalent security shape.
-- [ ] Test Apple/Telegram identities are prepared without personal data.
-- [ ] Auditor IPs, limits, windows, and stop contacts are recorded if production
-      testing is authorized.
-- [ ] Credential expiry and offboarding owners are recorded.
-
-## App Review
-
-- [ ] Review A and Review B profiles exist and have public usernames.
-- [ ] Dedicated Review-code secret is distinct and configured in production.
-- [ ] Fresh 30-day code batches are issued only after final build approval.
-- [ ] One code per profile is consumed in a clean-install test.
-- [ ] Only unused codes are placed in private App Store Connect Review Notes.
-- [ ] Unused codes will be revoked after review.
-
-## Secret and data hygiene
-
-- [x] Package contains no `.env`, tokens, keys, clear codes, user records,
-      database dumps, or private photos.
-- [x] `scripts/check_package.py` passes.
-- [ ] Logs/screenshots are sanitized and reviewed by a second person.
-- [ ] The auditor's storage, retention, and destruction requirements are agreed.
+      record snapshot age, elapsed restore time, indexes, references, and
+      least-privilege application-role boundaries.
+- [ ] Retain a full sanitized production attestation for DNS, TLS, listeners,
+      firewall, WireGuard, SSH policy, mounts, timers, ports, and image digests.
+- [ ] Complete restricted monitoring ingest and Grafana-key migration evidence;
+      observe both firing and resolved Telegram drill messages.
+- [ ] Retain a dated rollback exercise and immutable image/SBOM mapping for the
+      frozen server release.
+- [ ] Record accessibility and supported-iOS regression results for the signed
+      release candidate.
+- [ ] Obtain explicit product/release/security-owner sign-off or dated residual
+      risk decisions.
 
 ## Final authorization
 
 ```text
 Package version:
 Baseline manifest SHA-256:
+Signed iOS version/build:
+Publishing Apple Team ID:
 Security owner:
 Product/release owner:
 Approved handoff time (UTC):
-Auditor recipient:
 ```

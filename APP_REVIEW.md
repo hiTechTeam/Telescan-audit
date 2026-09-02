@@ -32,13 +32,17 @@ codes in one batch support retries/reinstalls using the same Apple subject; they
 are not a way to attach the same Telegram profile to unrelated Apple identities.
 Use Review A and Review B for independent identities/two-device BLE testing.
 
+The final archive must be signed by the publishing company's paid Apple
+Developer team. Register `hiTeam.TelescaniOS` for that team, enable Sign in with
+Apple, and use a build number not already uploaded to App Store Connect.
+
 ## Issue a batch on the production host
 
 ```sh
 docker compose exec telescan-api /app/.venv/bin/python -m scripts.review_codes issue \
   --telescan-id REVIEW_PROFILE_ID \
   --count 10 \
-  --valid-days 30 \
+  --valid-days 90 \
   --issued-by OPERATOR_IDENTIFIER \
   --apply \
   --confirm ISSUE_REVIEW_CODES
@@ -62,7 +66,7 @@ docker compose exec telescan-api /app/.venv/bin/python -m scripts.review_codes r
 
 ## Submission procedure
 
-1. Issue separate batches for Review A and Review B, normally valid for 30 days.
+1. Issue separate batches for Review A and Review B, valid for 90 days.
 2. Consume one code from each batch in a final clean-install/two-device test.
 3. Put only unused codes and synthetic usernames in private App Store Connect
    Review Notes.
@@ -83,4 +87,5 @@ docker compose exec telescan-api /app/.venv/bin/python -m scripts.review_codes r
 - Account deletion succeeds for a synthetic review account.
 - The demonstration video and notes contain no phone numbers, private chats,
   tokens, or other personal data.
-
+- The exact submitted build has passed publishing-team signed Apple-first login,
+  Telegram linking, account deletion, and two-device BLE checks.

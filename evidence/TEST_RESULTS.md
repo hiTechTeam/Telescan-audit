@@ -1,40 +1,46 @@
-# Local Baseline Verification Results
+# Pre-Release Verification Results
 
-**Date:** September 1, 2026  
-**Evidence class:** Local verification plus remote CI confirmation
+**Date:** September 2, 2026
+
+**Evidence class:** Local verification plus exact-SHA remote CI confirmation
 
 | Component/check | Result |
 | --- | --- |
 | API Ruff formatting/lint | Passed |
 | API Pyright | Passed — 0 errors |
-| API pytest | Passed — 62 tests |
-| API uv lock | Passed — 49 packages resolved |
+| API pytest | Passed — 157 tests |
 | User-bot Ruff formatting/lint | Passed |
 | User-bot Pyright | Passed — 0 errors |
-| User-bot pytest | Passed — 14 tests |
-| User-bot uv lock | Passed — 30 packages resolved |
+| User-bot pytest | Passed — 44 tests |
 | Admin-bot Ruff formatting/lint | Passed |
 | Admin-bot Pyright | Passed — 0 errors |
-| Admin-bot pytest | Passed — 9 tests |
-| iOS unsigned Release simulator build | Passed |
-| iOS `build-for-testing` | Passed |
-| iOS entitlement and Info plist validation | Passed |
-| iOS English/Russian localization parity | Passed — 193 keys each |
-| Changed-repository `git diff --check` | Passed before commit |
+| Admin-bot pytest | Passed — 41 tests |
+| MongoDB validation | Passed — 10 Python tests, Node contract fixtures, restore-invariant fixtures, deployment fault/recovery fixtures |
+| nginx immutable transaction | Passed rollback/success, child termination, durable gate, and outer-session recovery fixtures |
+| EU relay immutable transaction | Passed rollback/success, child termination, and outer-session recovery fixtures |
+| Monitoring validation | Passed safety gates, negative attestation inventory, immutable transaction, YAML and dashboard JSON checks |
+| Canonical legal source | Generated documents current; both public origins matched version and SHA-256 |
+| iOS remote XCTest | Passed in GitHub Actions on Xcode 26.3 |
+| iOS remote Release build/bundle validation | Passed |
+| iOS local unsigned Release simulator build | Passed |
+| Release bundle | `hiTeam.TelescaniOS`, version `1.0`, build `2`, production API origin, Bluetooth central/peripheral modes, privacy manifest present |
+| All repositories | `git diff --check` passed; no tracked `.env`, private-key, provisioning-profile, or signing-key candidates found |
 
-## XCTest runner limitation
+## Local XCTest runner limitation
 
-A full local XCTest invocation built the application/test targets and reached
-`Testing started`, but the Xcode runner stalled at `waiting for workers to
-materialize`. The run was interrupted after 136 seconds and is not counted as a
-passing local execution. GitHub Actions run `33492223348` subsequently completed
-XCTest, the Release build, and final bundle validation successfully on Xcode
-26.3. The workflow does not upload the `.xcresult`, so retain a result bundle in
-an audit-specific rerun if required by the auditor.
+The local XCTest invocation compiled the application and tests and reached
+`Testing started`, but CoreSimulator stalled while waiting for workers to
+materialize. It was interrupted after 270 seconds and is not counted as a local
+runtime pass. Exact-SHA GitHub Actions run `33678047504` independently completed
+XCTest and the Release build successfully.
 
-## Evidence still required
+## Evidence still required for formal release acceptance
 
-- Completed XCTest result bundle if required beyond the retained CI logs.
-- iOS 18/26 manual/device matrix and two-device BLE evidence.
-- Deployment rollback, external surface, production attestation, SBOM/image
-  digest, and latest backup/restore evidence.
+- Publishing-team signed Archive/TestFlight build and final Apple-first login.
+- Recorded iOS 17.6/18/26 regression and signed two-device BLE/background matrix.
+- Current-schema encrypted production-snapshot restore with observed backup age
+  and elapsed restore time.
+- Full sanitized production attestation, restricted-ingest/alert-delivery drill,
+  immutable image mapping, and dated rollback exercise.
+- App Store Connect privacy answers, screenshots/metadata, and release-owner
+  sign-off.

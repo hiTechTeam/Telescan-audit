@@ -1,39 +1,24 @@
-# Frozen Baseline CI/CD Runs
+# Pre-Release CI/CD Runs
 
-**Evidence captured (UTC):** 2026-09-01T09:39:49Z  
-**Result:** every configured workflow for the frozen baseline completed
-successfully. GitHub links require authorized repository access.
+**Evidence captured (UTC):** 2026-09-02T20:44:06Z
 
-## Application repositories
-
-| Repository | Frozen SHA | Workflow | Completed (UTC) | Result |
-| --- | --- | --- | --- | --- |
-| `Telescan-iOS` | `316a68095d7caa959abe8c65bf6431a023c11d3c` | [iOS CI](https://github.com/hiTechTeam/Telescan-iOS/actions/runs/33492223348) | 2026-09-01T09:38:47Z | SUCCESS — XCTest, Release build, and bundle validation |
-| `Telescan-api` | `8eebf456ee16a49832cd71116e6ff8d6fe7a954d` | [Deploy Telescan API](https://github.com/hiTechTeam/Telescan-api/actions/runs/33492210275) | 2026-09-01T09:29:08Z | SUCCESS — lint, types, tests, image build, backup, migration, deploy, health gate |
-| `Telescan-bot-app` | `816deb82c91488044b3372fc35708d95310e60e4` | [Deploy Telescan Bot](https://github.com/hiTechTeam/Telescan-bot-app/actions/runs/33492207198) | 2026-09-01T09:28:13Z | SUCCESS — lint, types, tests, image build, deploy, health gate |
-| `Telescan-admin-bot` | `9b9cdbeab7b3542fb0f82c0afd4d03f041102456` | [Deploy Telescan Admin Bot](https://github.com/hiTechTeam/Telescan-admin-bot/actions/runs/33492207083) | 2026-09-01T09:28:12Z | SUCCESS — lint, types, tests, image build, deploy, health gate |
-
-## Infrastructure repositories
-
-These repositories were already synchronized and unchanged during the
-September 1 baseline publication. Their exact frozen SHAs already had green
-validation and production deployment runs.
+**Result:** every configured workflow for the current pre-release SHA completed
+successfully. GitHub links require authorized repository access where private.
 
 | Repository | Frozen SHA | Workflow | Completed (UTC) | Result |
 | --- | --- | --- | --- | --- |
-| `Telescan-nginx` | `b29c523edeec1009c925f8162b953441c3c210d7` | [Deploy Telescan Nginx](https://github.com/hiTechTeam/Telescan-nginx/actions/runs/32725603431) | 2026-08-24T12:10:21Z | SUCCESS |
-| `Telescan-relay` | `730c271bfc4f7aaed08f244baaf5a0fc58bf801b` | [Validate and deploy EU relay](https://github.com/hiTechTeam/Telescan-relay/actions/runs/32725602533) | 2026-08-24T12:10:19Z | SUCCESS |
-| `Telescan-db` | `3194ba786436cdb5a266c40ae84971cd01b60e7e` | [Deploy Telescan MongoDB](https://github.com/hiTechTeam/Telescan-db/actions/runs/32726766081) | 2026-08-24T12:23:08Z | SUCCESS |
-| `Telescan-monitoring` | `07b6c6b00218e420d09201e0c4219f12790586a3` | [Monitoring stack](https://github.com/hiTechTeam/Telescan-monitoring/actions/runs/32239623432) | 2026-08-19T09:50:28Z | SUCCESS |
+| `Telescan-iOS` | `7e5a96b898f91f510703eaf03414c4b77abcd71f` | [iOS CI](https://github.com/hiTechTeam/Telescan-iOS/actions/runs/33678047504) | 2026-09-02T20:23:47Z | SUCCESS — XCTest, unsigned Release build, bundle validation |
+| `Telescan-api` | `ca92c03be39a3006f43754c41cf23c809b8fd700` | [Deploy Telescan API](https://github.com/hiTechTeam/Telescan-api/actions/runs/33671211277) | 2026-09-02T19:10:02Z | SUCCESS — validate, backup, migrations, rollout, health gate |
+| `Telescan-bot-app` | `87a76179f552b7d73fd2778e98c59e6be1ec62bc` | [Deploy Telescan Bot](https://github.com/hiTechTeam/Telescan-bot-app/actions/runs/33641968109) | 2026-09-02T14:28:51Z | SUCCESS — validate, image, rollout, health gate |
+| `Telescan-admin-bot` | `cce205998e50f5528fc884949ed14d81d4d7af60` | [Deploy Telescan Admin Bot](https://github.com/hiTechTeam/Telescan-admin-bot/actions/runs/33570880123) | 2026-09-01T23:28:31Z | SUCCESS — validate, image, rollout, health gate |
+| `Telescan-db` | `94cac3380f014b55c8bbc6f26cab6407c53ae924` | [Deploy Telescan MongoDB](https://github.com/hiTechTeam/Telescan-db/actions/runs/33570482988) | 2026-09-01T23:20:36Z | SUCCESS — validation, durable rollout, database health |
+| `Telescan-nginx` | `4242bcd54eb79f205ef99afffc8f14436bd46260` | [Deploy Telescan Nginx](https://github.com/hiTechTeam/Telescan-nginx/actions/runs/33569059605) | 2026-09-01T23:02:17Z | SUCCESS — transaction fixtures, deployment, route checks |
+| `Telescan-relay` | `dc9d38e3b17cffae661def499eeba14481e7260d` | [Validate and deploy EU relay](https://github.com/hiTechTeam/Telescan-relay/actions/runs/33568801105) | 2026-09-01T22:59:08Z | SUCCESS — validation, deployment, end-to-end health |
+| `Telescan-monitoring` | `bc66e60a2fa6d1f96db1cde2e3a2888b5510c0aa` | [Monitoring stack](https://github.com/hiTechTeam/Telescan-monitoring/actions/runs/33569022579) | 2026-09-01T23:06:47Z | SUCCESS — rules/config validation, deployment, readiness |
+| `Telescan-info` | `59176141e495f26d47d86144af225d0026c71cda` | [Validate legal source](https://github.com/hiTechTeam/Telescan-info/actions/runs/33562511667) | 2026-09-01T21:42:32Z | SUCCESS — canonical legal generation check |
 
-## Repositories without GitHub Actions
+`Telescan-internal-docs` at
+`b1929466f3a1efe9f166050e072220ce82f61f12` has no GitHub Actions workflow;
+its clean local `main` and `origin/main` were compared after publication.
 
-`Telescan-info` at `bc92242f5b7bff907dd2453fb78ee42b73522212`
-and `Telescan-internal-docs` at
-`c05fb982319e9462c4bed7c00f657e4b5cb2042c` do not define GitHub Actions
-workflows. Their local `main` branches and `origin/main` were compared after
-publication and matched exactly.
-
-The audit package is published privately at
-`https://github.com/hiTechTeam/Telescan-audit`. Its deterministic local package
-checker and integrity manifest are the applicable validation controls.
+The audit package uses its deterministic package checker and SHA-256 manifest.

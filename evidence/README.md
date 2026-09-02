@@ -18,7 +18,7 @@ dumps, or private photos here.
 | `DEPLOY_ROLLBACK.md` | Non-production rollback exercise |
 | `BACKUP_RESTORE.md` | Encrypted backup and isolated restore evidence |
 | `PRODUCTION_ATTESTATION.md` | Operator-confirmed DNS/firewall/config state without secret values |
-| `P0_LOCAL_VERIFICATION.md` | Local checks and partial publication status for the unfrozen P0 candidate; never production evidence |
+| `P0_LOCAL_VERIFICATION.md` | Local checks and current publication/deployment status; local fixtures alone are not production evidence |
 
 ## Evidence rules
 

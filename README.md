@@ -1,16 +1,12 @@
 # Telescan Audit Package
 
 **Classification:** Confidential — authorized auditors and Telescan operators only  
-**Prepared:** September 1, 2026  
-**Status:** Remote baseline published; CI and production deployment evidence
-captured; auditor access, device evidence, and owner sign-off remain
 
-> **P0 candidate overlay:** the frozen baseline below remains historical and is
-> not rewritten. Coordinated source commits now exist, with only limited remote
-> publication and no successful P0 production rollout. See
-> [P0_REMEDIATION.md](P0_REMEDIATION.md) and
-> [evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md). This is
-> neither a new frozen baseline nor proof of production deployment.
+**Prepared:** September 2, 2026
+
+**Status:** Pre-release source baseline frozen; configured CI/CD green; server
+production and public legal/health smoke evidence captured; signed App Store
+build, current-schema restore, full attestation, and owner sign-off remain
 
 ## Purpose
 
@@ -25,11 +21,12 @@ codes, user data, database snapshots, private keys, or `.env` files.
 
 ## Handoff gate
 
-Every in-scope repository has a clean local working tree and a frozen commit
-SHA recorded in [REPOSITORIES.md](REPOSITORIES.md) and
+Every in-scope repository has a clean local working tree and a pre-release
+commit SHA recorded in [REPOSITORIES.md](REPOSITORIES.md) and
 [evidence/BASELINE.md](evidence/BASELINE.md). Those commits are published on
-their authorized remotes. Configured CI/CD workflows are green, the changed
-API and bot services were deployed to production, and dated evidence is linked
+their authorized remotes. Configured CI/CD workflows are green, the current
+server components completed their production workflows, and dated evidence is
+linked
 from [evidence/CI_RUNS.md](evidence/CI_RUNS.md) and
 [evidence/DEPLOYMENT_STATUS.md](evidence/DEPLOYMENT_STATUS.md). Remaining
 handoff gates are explicitly tracked in [HANDOFF_CHECKLIST.md](HANDOFF_CHECKLIST.md).
@@ -54,7 +51,7 @@ Use `scripts/hash_package.py` after every package update.
 | [APP_REVIEW.md](APP_REVIEW.md) | Safe Apple App Review code workflow |
 | [AUDITOR_ACCESS.md](AUDITOR_ACCESS.md) | Least-privilege access and staging-data requirements |
 | [OPEN_RISKS.md](OPEN_RISKS.md) | Accepted or unresolved risks disclosed before testing |
-| [P0_REMEDIATION.md](P0_REMEDIATION.md) | Candidate P0 changes, source ownership, evidence, and remaining gates |
+| [P0_REMEDIATION.md](P0_REMEDIATION.md) | Deployed P0 status, evidence, and remaining acceptance gates |
 | [HANDOFF_CHECKLIST.md](HANDOFF_CHECKLIST.md) | Final operator checklist before granting access |
 | [templates/FINDING.md](templates/FINDING.md) | Standard finding format |
 | [templates/RETEST.md](templates/RETEST.md) | Remediation/retest record |
@@ -62,7 +59,7 @@ Use `scripts/hash_package.py` after every package update.
 | [evidence/CI_RUNS.md](evidence/CI_RUNS.md) | Remote CI/CD results for the frozen SHAs |
 | [evidence/DEPLOYMENT_STATUS.md](evidence/DEPLOYMENT_STATUS.md) | Production rollout and health evidence |
 | [evidence/EXTERNAL_SURFACE.md](evidence/EXTERNAL_SURFACE.md) | Dated public endpoint smoke observations |
-| [evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md) | Sanitized verification and partial publication status for the unfrozen P0 candidate |
+| [evidence/P0_LOCAL_VERIFICATION.md](evidence/P0_LOCAL_VERIFICATION.md) | Sanitized local and remote verification for the pre-release baseline |
 | [PACKAGE_HASHES.sha256](PACKAGE_HASHES.sha256) | Integrity manifest for the current package contents |
 
 ## Auditor starting sequence
